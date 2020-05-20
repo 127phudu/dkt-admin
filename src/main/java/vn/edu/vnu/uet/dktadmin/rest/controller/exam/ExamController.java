@@ -2,6 +2,7 @@ package vn.edu.vnu.uet.dktadmin.rest.controller.exam;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.vnu.uet.dktadmin.common.exception.BaseException;
 import vn.edu.vnu.uet.dktadmin.common.utilities.PageUtil;

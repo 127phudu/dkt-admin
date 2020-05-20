@@ -1,6 +1,8 @@
 package vn.edu.vnu.uet.dktadmin.dto.service.exam;
 
 import ma.glasnost.orika.MapperFacade;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import vn.edu.vnu.uet.dktadmin.common.exception.BadRequestException;
@@ -67,7 +69,9 @@ public class ExamService {
         return exam != null;
     }
 
+    @CacheEvict(value = "exams", key = "#id")
     public ExamResponse getById(Long id) {
+        System.out.println("get exam by id: 1");
         Exam exam = examDao.getById(id);
         return getExamResponse(exam);
     }
