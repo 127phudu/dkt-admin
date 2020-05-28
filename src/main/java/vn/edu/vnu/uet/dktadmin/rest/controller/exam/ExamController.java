@@ -81,4 +81,17 @@ public class ExamController {
         }
     }
 
+    @PutMapping("/exam/clone_redis/{semesterId}")
+    public ApiDataResponse<Boolean> cloneRedisExam(@PathVariable Long semesterId) {
+        try {
+            log.info("clone exam table to redis by semesterId {}", semesterId);
+            return ApiDataResponse.ok(examService.cloneRedisExam(semesterId));
+        } catch (BaseException e) {
+            log.error(e.getMessage());
+            return ApiDataResponse.error(e.getCode(), e.getMessage());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return ApiDataResponse.error();
+        }
+    }
 }

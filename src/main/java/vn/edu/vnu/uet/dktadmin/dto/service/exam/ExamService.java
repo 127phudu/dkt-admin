@@ -11,7 +11,10 @@ import vn.edu.vnu.uet.dktadmin.dto.dao.room.RoomDao;
 import vn.edu.vnu.uet.dktadmin.dto.dao.roomSemester.RoomSemesterDao;
 import vn.edu.vnu.uet.dktadmin.dto.dao.subject.SubjectDao;
 import vn.edu.vnu.uet.dktadmin.dto.dao.subjectSemester.SubjectSemesterDao;
+
 import vn.edu.vnu.uet.dktadmin.dto.model.*;
+import vn.edu.vnu.uet.dktadmin.dto.model.redis.RedisExam;
+
 import vn.edu.vnu.uet.dktadmin.dto.service.roomSemester.RoomSemesterService;
 import vn.edu.vnu.uet.dktadmin.dto.service.subjectSemester.SubjectSemesterService;
 import vn.edu.vnu.uet.dktadmin.rest.model.PageBase;
@@ -139,6 +142,13 @@ public class ExamService {
                 examResponses,
                 new PageResponse(page, size, total)
         );
+    }
+
+    public Boolean cloneRedisExam(Long semesterId) {
+        List<Exam> exams = examDao.getBySemesterId(semesterId);
+        List<RedisExam> redisExams = mapperFacade.mapAsList(exams, RedisExam.class);
+        examDao.cloneRedisExam(redisExams);
+        return true;
     }
 
     public void validateExam(ExamRequest request) {
