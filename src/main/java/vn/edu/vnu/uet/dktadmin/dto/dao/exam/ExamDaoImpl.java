@@ -75,6 +75,7 @@ public class ExamDaoImpl implements ExamDao {
 
     @Override
     public Boolean cloneRedisExam(List<RedisExam> redisExams) {
+        redisExamRepository.deleteAll();
         redisExams.forEach(redisExamRepository::save);
         return true;
     }
