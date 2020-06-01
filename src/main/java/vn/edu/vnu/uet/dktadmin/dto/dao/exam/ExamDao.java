@@ -11,6 +11,8 @@ import java.util.List;
 public interface ExamDao {
     Exam store(Exam exam);
     Boolean cloneRedisExam(List<RedisExam> redisExams);
+    List<RedisExam> getAllFromRedis();
+    Boolean SyncRedisDataToSqlDatabase(List<Exam> exams);
     Exam getById(Long id);
     Exam getByExamCode(String examCode);
     List<Exam> getBySemesterId(Long semesterId);

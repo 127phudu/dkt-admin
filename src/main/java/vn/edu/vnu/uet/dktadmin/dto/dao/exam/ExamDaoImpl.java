@@ -79,4 +79,15 @@ public class ExamDaoImpl implements ExamDao {
         redisExams.forEach(redisExamRepository::save);
         return true;
     }
+
+    @Override
+    public List<RedisExam> getAllFromRedis() {
+        return redisExamRepository.findAll();
+    }
+
+    @Override
+    public Boolean SyncRedisDataToSqlDatabase(List<Exam> exams) {
+        examRepository.saveAll(exams);
+        return true;
+    }
 }
