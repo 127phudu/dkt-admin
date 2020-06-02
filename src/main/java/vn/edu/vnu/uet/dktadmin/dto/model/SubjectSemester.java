@@ -18,4 +18,5 @@ public class SubjectSemester {
     private String description;
     private Long subjectId;
     private Long semesterId;
+    private String handleServer;
 }
